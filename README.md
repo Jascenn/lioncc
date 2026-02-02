@@ -274,11 +274,20 @@ npm -v
 
 **A:**
 1. 确保配置已保存
-2. 重启 OpenClaw：
+2. 重启 OpenClaw Gateway：
    ```bash
-   pkill -f "openclaw gateway"
-   openclaw gateway
+   openclaw gateway restart
    ```
+3. 查看详细故障排查：[docs/troubleshooting.md](docs/troubleshooting.md)
+
+**Q: OpenClaw 无响应或显示 (no output)？**
+
+**A:** 这通常是配置问题，请检查：
+1. **baseUrl 配置是否正确**（不要包含 `/v1`）
+2. **API Key 是否有效**
+3. **模型配置是否正确**
+
+详细解决方案请参考：[docs/troubleshooting.md](docs/troubleshooting.md)
 
 **Q: 如何切换 API Key？**
 
@@ -325,19 +334,34 @@ npm install -g openclaw
 ### 格式
 ```json
 {
-  "anthropic": {
-    "apiKey": "sk-xxx",
-    "baseURL": "https://vibecodingapi.ai/v1"
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "VibeCoding": {
+        "baseUrl": "https://vibecodingapi.ai",
+        "apiKey": "sk-xxx",
+        "auth": "api-key",
+        "api": "anthropic-messages",
+        "authHeader": false,
+        "models": [...]
+      }
+    }
   },
   "agents": {
     "defaults": {
       "model": {
-        "primary": "claude-opus-4-5-20251101"
+        "primary": "VibeCoding/claude-opus-4-5-20251101",
+        "fallbacks": ["VibeCoding/claude-opus-4-5-20251101"]
       }
     }
   }
 }
 ```
+
+**⚠️ 重要提示：**
+- `baseUrl` 不要包含 `/v1`，OpenClaw 会自动添加
+- 错误示例：`https://vibecodingapi.ai/v1` ❌
+- 正确示例：`https://vibecodingapi.ai` ✅
 
 ### 备份
 - 每次修改配置时自动备份
@@ -413,12 +437,13 @@ lioncc
 ## 🔄 更新日志
 
 ### v2.0.0 (2026-02-03)
-- ✅ 简化版发布
-- ✅ 专注 VibeCoding API
-- ✅ 模型搜索功能
-- ✅ 清空配置功能
-- ✅ 完全卸载功能
-- ✅ 跨平台支持
+- 🎉 首次发布
+- ✅ 专注 VibeCoding API 配置
+- 🚀 一键安装脚本（无需 npm）
+- 🔍 智能模型搜索功能
+- 🧹 清空配置功能
+- 🗑️ 完全卸载功能
+- 🌍 跨平台支持
 
 ## 📄 许可证
 
