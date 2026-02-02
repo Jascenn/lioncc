@@ -7,6 +7,7 @@ import ora from 'ora';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
+import crypto from 'crypto';
 
 // 注册 autocomplete 插件
 inquirer.registerPrompt('autocomplete', autocomplete);
@@ -20,20 +21,25 @@ class OpenClawConfig {
     };
   }
 
+  // 生成随机 token
+  generateToken() {
+    return crypto.randomBytes(32).toString('hex');
+  }
+
   // 显示 Banner
   showBanner() {
     console.clear();
     console.log(chalk.cyan(`
-  ┌─────────────────────────────────────────────┐
-  │  _     _              _____ _____            │
-  │ | |   (_)            / ____|  __ \\           │
-  │ | |    _  ___  _ __ | |    | |  \\/ ___       │
-  │ | |   | |/ _ \\| '_ \\| |    | |    / __|      │
-  │ | |___| | (_) | | | | |____| |___| (__       │
-  │ |_____|_|\\___/|_| |_|\\_____|______|\\___| │
-  │                                             │
-  │        OpenClaw 配置工具                    │
-  └─────────────────────────────────────────────┘
+  ┌──────────────────────────────────────────────────────────┐
+  │                                                          │
+  │   _      _____ ____  _   _  _____ _____            _____ │
+  │  | |    |_   _/ __ \\| \\ | |/ ____/ ____|     /\\   |_   _|│
+  │  | |      | || |  | |  \\| | |   | |         /  \\    | |  │
+  │  | |      | || |  | | . \` | |   | |        / /\\ \\   | |  │
+  │  | |____ _| || |__| | |\\  | |___| |____   / ____ \\ _| |_ │
+  │  |______|_____\\____/|_| \\_|\\_____\\_____| /_/    \\_\\_____│
+  │                                                          │
+  └──────────────────────────────────────────────────────────┘
     `));
   }
 
@@ -159,28 +165,76 @@ class OpenClawConfig {
         }
       }
 
-      // 使用正确的配置格式
+      // 使用 OpenClaw 2026.2.1 的配置格式（参考 302oc）
+      const providerName = 'VibeCoding';
+      const modelId = this.config.model.split('/').pop(); // 提取模型 ID
+
       const newConfig = {
         ...existingConfig,
-        // anthropic 配置在顶层
-        anthropic: {
-          apiKey: this.config.apiKey,
-          baseURL: this.config.apiEndpoint,
+        // models.providers 格式
+        models: {
+          ...(existingConfig.models || {}),
+          mode: 'merge',
+          providers: {
+            ...(existingConfig.models?.providers || {}),
+            [providerName]: {
+              baseUrl: this.config.apiEndpoint,
+              apiKey: this.config.apiKey,
+              auth: 'api-key',
+              api: 'anthropic-messages',
+              authHeader: false,
+              models: [
+                {
+                  id: modelId,
+                  name: `Claude ${modelId.includes('opus') ? 'Opus' : 'Sonnet'} 4.5`,
+                  api: 'anthropic-messages',
+                  reasoning: true,
+                  input: ['text'],
+                  contextWindow: 200000,
+                  maxTokens: 8192,
+                  cost: {
+                    input: 0,
+                    output: 0,
+                    cacheRead: 0,
+                    cacheWrite: 0,
+                  },
+                },
+              ],
+            },
+          },
         },
-        // agents.defaults 只包含模型配置
+        // agents.defaults 配置
         agents: {
           ...(existingConfig.agents || {}),
           defaults: {
             ...(existingConfig.agents?.defaults || {}),
             model: {
-              primary: this.config.model,
+              primary: `${providerName}/${modelId}`,
+              fallbacks: [`${providerName}/${modelId}`],
             },
+            models: {
+              [`${providerName}/${modelId}`]: {
+                alias: providerName,
+              },
+            },
+            workspace: existingConfig.agents?.defaults?.workspace || `${process.env.HOME}/.openclaw/workspace`,
+          },
+        },
+        // gateway 配置
+        gateway: existingConfig.gateway || {
+          mode: 'local',
+          port: 18789,
+          bind: 'loopback',
+          auth: {
+            mode: 'token',
+            token: this.generateToken(),
           },
         },
       };
 
       // 删除旧格式的配置（如果存在）
       delete newConfig.agent;
+      delete newConfig.anthropic;
 
       fs.writeFileSync(configPath, JSON.stringify(newConfig, null, 2), 'utf-8');
       return true;
@@ -379,6 +433,7 @@ class OpenClawConfig {
         { name: '🗑️  完全卸载 OpenClaw', value: 'uninstall' },
         { name: '❌ 退出', value: 'exit' },
       ],
+      default: 'config',
     }]);
 
     if (action === 'config') {
