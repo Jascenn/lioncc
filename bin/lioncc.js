@@ -16,7 +16,7 @@ class OpenClawConfig {
   constructor() {
     this.config = {
       apiKey: '',
-      apiEndpoint: 'https://vibecodingapi.ai/v1',
+      apiEndpoint: 'https://vibecodingapi.ai',
       model: '',
     };
   }
@@ -49,7 +49,8 @@ class OpenClawConfig {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-      const response = await fetch(`${this.config.apiEndpoint}/models`, {
+      // 注意：models 端点需要 /v1，但 baseUrl 不包含 /v1（避免 messages API 路径重复）
+      const response = await fetch(`${this.config.apiEndpoint}/v1/models`, {
         headers: {
           'Authorization': `Bearer ${this.config.apiKey}`,
           'Content-Type': 'application/json',
@@ -298,9 +299,9 @@ class OpenClawConfig {
       this.config.apiEndpoint = customUrl;
     } else {
       const endpoints = {
-        vibecoding: 'https://vibecodingapi.ai/v1',
-        anthropic: 'https://api.anthropic.com/v1',
-        openrouter: 'https://openrouter.ai/api/v1',
+        vibecoding: 'https://vibecodingapi.ai',
+        anthropic: 'https://api.anthropic.com',
+        openrouter: 'https://openrouter.ai/api',
       };
       this.config.apiEndpoint = endpoints[provider];
     }

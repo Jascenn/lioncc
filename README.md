@@ -313,7 +313,7 @@ cat ~/.openclaw/openclaw.json
 
 **A:**
 ```bash
-cd lioncc-cli
+cd lioncc
 npm unlink
 ```
 
