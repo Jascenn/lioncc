@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# LionCC 简化版启动脚本
+# LionCC 启动脚本
 
 set -e
 

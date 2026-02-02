@@ -1,5 +1,5 @@
 @echo off
-REM LionCC 简化版启动脚本 - Windows
+REM LionCC 启动脚本 - Windows
 
 setlocal enabledelayedexpansion
 

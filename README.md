@@ -84,10 +84,10 @@ npx lioncc
 cd lioncc
 
 # macOS/Linux
-./start-simple.sh
+./start.sh
 
 # Windows
-start-simple.bat
+start.bat
 ```
 
 **优点：**
