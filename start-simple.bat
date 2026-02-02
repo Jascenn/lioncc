@@ -4,7 +4,7 @@ REM LionCC 简化版启动脚本 - Windows
 setlocal enabledelayedexpansion
 
 set "SCRIPT_DIR=%~dp0"
-set "NODE_SCRIPT=%SCRIPT_DIR%bin\lioncc-simple.js"
+set "NODE_SCRIPT=%SCRIPT_DIR%bin\lioncc.js"
 
 REM 检查 Node.js
 where node >nul 2>nul

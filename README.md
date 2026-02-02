@@ -26,14 +26,16 @@ node -v
 - 访问 https://nodejs.org/
 - 下载并安装 LTS 版本
 
-### 安装 LionCC
+### 安装方式
 
-**方式 1: 全局安装（推荐）**
+#### 方式 1: 全局安装（推荐）
+
+**一次安装，随处使用**
 
 ```bash
 # 1. 克隆或下载项目
-git clone <repository-url>
-cd lioncc-cli
+git clone https://github.com/Jascenn/lioncc.git
+cd lioncc
 
 # 2. 安装依赖
 npm install
@@ -45,23 +47,83 @@ npm link
 lioncc
 ```
 
-**方式 2: npx 运行（无需安装）**
+**优点：**
+- ✅ 在任何目录都能运行
+- ✅ 只需输入 `lioncc` 命令
+- ✅ 最方便的使用方式
+
+**卸载：**
+```bash
+cd lioncc
+npm unlink
+```
+
+#### 方式 2: npx 运行（无需安装）
+
+**适合偶尔使用**
 
 ```bash
-cd lioncc-cli
+# 从 GitHub 直接运行
+npx github:Jascenn/lioncc
+
+# 或本地运行
+cd lioncc
 npx lioncc
 ```
 
-**方式 3: 本地脚本**
+**优点：**
+- ✅ 无需安装
+- ✅ 始终运行最新版本
+- ✅ 不占用全局命令
+
+#### 方式 3: 本地脚本（最简单）
+
+**双击运行**
 
 ```bash
-cd lioncc-cli
+cd lioncc
 
 # macOS/Linux
 ./start-simple.sh
 
 # Windows
 start-simple.bat
+```
+
+**优点：**
+- ✅ 最简单
+- ✅ 无需记命令
+- ✅ 适合不熟悉命令行的用户
+
+### 权限问题解决
+
+**macOS/Linux 权限问题：**
+
+```bash
+# 方式 1: 使用 sudo
+sudo npm link
+
+# 方式 2: 修改 npm 全局目录（推荐）
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
+source ~/.zshrc
+npm link
+```
+
+**Windows 权限问题：**
+
+1. 以管理员身份运行 PowerShell 或命令提示符
+2. 运行安装命令
+
+**Windows 执行策略限制：**
+
+```powershell
+# 临时允许
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+# 或永久设置（需要管理员权限）
+Set-ExecutionPolicy RemoteSigned
 ```
 
 ## 🚀 快速开始
@@ -183,23 +245,11 @@ npm -v
 
 **Q: npm link 失败？**
 
-**A:** 使用 sudo（macOS/Linux）：
-```bash
-sudo npm link
-```
-
-或修改 npm 全局目录：
-```bash
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
-source ~/.zshrc
-npm link
-```
+**A:** 参考上面"权限问题解决"部分。
 
 **Q: Windows 上无法运行？**
 
-**A:** 以管理员身份运行命令提示符或 PowerShell。
+**A:** 参考上面"权限问题解决"部分。
 
 ### 使用相关
 

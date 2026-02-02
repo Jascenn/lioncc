@@ -3,12 +3,12 @@
   "version": "2.0.0",
   "type": "module",
   "description": "OpenClaw 配置工具 - 简单快速配置 OpenClaw",
-  "main": "bin/lioncc-simple.js",
+  "main": "bin/lioncc.js",
   "bin": {
-    "lioncc": "./bin/lioncc-simple.js"
+    "lioncc": "./bin/lioncc.js"
   },
   "scripts": {
-    "start": "node bin/lioncc-simple.js"
+    "start": "node bin/lioncc.js"
   },
   "keywords": [
     "lioncc",

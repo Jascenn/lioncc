@@ -5,7 +5,7 @@
 set -e
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-NODE_SCRIPT="$SCRIPT_DIR/bin/lioncc-simple.js"
+NODE_SCRIPT="$SCRIPT_DIR/bin/lioncc.js"
 
 # 颜色定义
 RED='\033[0;31m'
