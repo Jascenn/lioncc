@@ -1,0 +1,50 @@
+# 依赖
+node_modules/
+package-lock.json
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# 日志
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 用户配置目录
+.openclaw/
+.lioncc/
+.lioncc-config.json
+
+# 备份文件
+*.backup
+*.bak
+*.backup.*
+
+# 临时文件
+*.tmp
+.cache/
+.temp/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 测试覆盖率
+coverage/
+.nyc_output/
+
+# 构建输出
+dist/
+build/

@@ -1,0 +1,32 @@
+{
+  "name": "lioncc",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "OpenClaw 配置工具 - 简单快速配置 OpenClaw",
+  "main": "bin/lioncc-simple.js",
+  "bin": {
+    "lioncc": "./bin/lioncc-simple.js"
+  },
+  "scripts": {
+    "start": "node bin/lioncc-simple.js"
+  },
+  "keywords": [
+    "lioncc",
+    "openclaw",
+    "api",
+    "cli",
+    "claude",
+    "config"
+  ],
+  "author": "凌一",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.12",
+    "inquirer-autocomplete-prompt": "^3.0.1",
+    "ora": "^7.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
