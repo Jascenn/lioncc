@@ -160,18 +160,36 @@ lioncc
 openclaw gateway
 ```
 
-### 配置消息平台
+### 使用 OpenClaw
 
+配置完成后，你可以通过以下方式使用 OpenClaw：
+
+**方式 1: TUI（终端界面）**
 ```bash
-# WhatsApp（推荐）
-openclaw channels login
-
-# Telegram
-openclaw channels login --channel telegram
-
-# Discord
-openclaw channels login --channel discord
+openclaw tui
 ```
+
+**方式 2: CLI（命令行）**
+```bash
+openclaw agent --local --message "你好" --session-id "test"
+```
+
+**方式 3: API（通过 Gateway）**
+```bash
+# Gateway 默认运行在 http://127.0.0.1:18789
+# 可以通过 HTTP API 调用
+```
+
+### 配置消息平台（可选）
+
+⚠️ **注意**: OpenClaw 2026.2.1 版本的 channels 功能可能需要额外配置。
+
+查看可用的 channels：
+```bash
+openclaw channels list
+```
+
+如需配置 channels，请参考 [OpenClaw 官方文档](https://docs.openclaw.ai/gateway/configuration)。
 
 ## 📖 使用指南
 
