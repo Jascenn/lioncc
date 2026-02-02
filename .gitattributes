@@ -1,0 +1,12 @@
+# 确保 shell 脚本使用 LF 行尾符
+*.sh text eol=lf
+
+# 确保 batch 文件使用 CRLF 行尾符
+*.bat text eol=crlf
+
+# 其他文本文件使用 LF
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
