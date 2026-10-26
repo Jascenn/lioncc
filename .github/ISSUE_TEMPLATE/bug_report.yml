@@ -1,0 +1,75 @@
+name: 🐞 Bug 报告 / Bug report
+description:  something 不工作时用这个模板 / Report something that stopped working
+title: "fix: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        只填写你确定的部分。**"实际结果 vs 期望结果"分开写**是最省来回的一栏。
+  - type: input
+    id: version
+    attributes:
+      label: 版本 / Version
+      description: tag、commit 前 7 位，或应用内的版本号
+      placeholder: "v0.4.0 / a1b2c3d"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 发生了什么 / What happened
+      description: 现象描述，不要写你猜测的原因
+      placeholder: 点击"导出"后进程退出，无报错输出。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望是什么 / Expected
+      placeholder: 生成 ~/Downloads/xxx.csv 并保持窗口打开。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤 / Steps to reproduce
+      description: 从"从零克隆"开始写，越接近陌生人能照做的程度越好
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: 环境 / Environment
+      value: |
+        - OS:
+        - 运行时版本（node/python/go 等）:
+        - 相关配置或环境变量（不要贴密钥）:
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志 / Logs
+      render: text
+      placeholder: 完整堆栈比一句话有用得多。
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 影响 / Impact
+      options:
+        - 生产不可用或数据损坏
+        - 主路径受阻，有绕行办法
+        - 影响体验或效率
+        - 边缘情况 / 锦上添花
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前自检
+      options:
+        - label: 已搜索过相似 issue（含已关闭的）
+          required: true
+        - label: 日志与截图里不包含密钥、token 或个人信息
+          required: true

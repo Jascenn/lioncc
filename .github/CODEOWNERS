@@ -1,0 +1,9 @@
+# Repository ownership map. CLI, installers, package metadata and publishing are separate review surfaces.
+*                           @Jascenn
+/bin/                       @Jascenn
+/docs/                      @Jascenn
+/.github/workflows/         @Jascenn
+/package.json               @Jascenn
+/install.sh                 @Jascenn
+/start.sh                   @Jascenn
+/start.bat                  @Jascenn
