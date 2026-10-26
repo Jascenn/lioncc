@@ -1,7 +1,7 @@
 name: ✨ 功能请求 / Feature request
 description: 新能力或现有能力的改进 / Propose a new capability or improvement
 title: "feat: "
-labels: ["enhancement", "needs-triage"]
+labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
