@@ -1,5 +1,5 @@
 name: 🐞 Bug 报告 / Bug report
-description:  something 不工作时用这个模板 / Report something that stopped working
+description: 有一项功能不工作时使用 / Report something that stopped working
 title: "fix: "
 labels: ["bug"]
 body:
