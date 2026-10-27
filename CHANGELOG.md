@@ -1,5 +1,11 @@
 # 更新日志
 
+## [Unreleased]
+
+### Added
+
+- Add contribution, security, issue-form, CODEOWNERS and license documentation.
+
 所有重要的项目更改都将记录在此文件中。
 
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
