@@ -1,0 +1,38 @@
+name: Verify
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check CLI syntax
+        run: node --check bin/lioncc.js
+
+      - name: Validate package metadata
+        run: |
+          node -e "const p=require('./package.json'); if (p.name !== 'lioncc' || !p.bin?.lioncc || !p.license) process.exit(1)"
+
+      - name: Verify publish contents
+        run: npm pack --dry-run
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
