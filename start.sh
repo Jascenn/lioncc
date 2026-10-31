@@ -18,7 +18,7 @@ NC='\033[0m' # No Color
 if ! command -v node &> /dev/null; then
     echo -e "${RED}❌ 未安装 Node.js${NC}"
     echo ""
-    echo -e "${YELLOW}请先安装 Node.js (需要 18.0.0 或更高版本):${NC}"
+    echo -e "${YELLOW}请先安装 Node.js (需要 22.0.0 或更高版本):${NC}"
     echo "  访问 https://nodejs.org/"
     echo ""
     exit 1

@@ -199,7 +199,7 @@ openclaw gateway restart
 ### 测试流程
 1. 本地测试所有功能
 2. 测试跨平台兼容性（macOS/Linux/Windows）
-3. 测试不同 Node.js 版本（18.x, 20.x, 22.x）
+3. 测试不同 Node.js 版本（22.x 和当前最新 LTS）
 4. 测试安装脚本
 5. 更新文档和 Release 说明
 

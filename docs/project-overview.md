@@ -121,7 +121,7 @@ lioncc/
 - `ora` (^7.0.1) - 加载动画效果
 
 **运行环境：**
-- Node.js >= 18.0.0
+- Node.js >= 22.0.0
 - ES Modules (type: "module")
 - 跨平台支持（macOS/Linux/Windows）
 
