@@ -11,7 +11,7 @@ where node >nul 2>nul
 if %errorlevel% neq 0 (
     echo [91m❌ 未安装 Node.js[0m
     echo.
-    echo [93m请先安装 Node.js ^(需要 18.0.0 或更高版本^):[0m
+    echo [93m请先安装 Node.js ^(需要 22.0.0 或更高版本^):[0m
     echo   访问 https://nodejs.org/
     echo.
     pause

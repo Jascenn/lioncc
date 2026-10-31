@@ -6,6 +6,11 @@
 
 - Add contribution, security, issue-form, CODEOWNERS and license documentation.
 
+### Changed
+
+- Require Node.js 22 or newer and test Node.js 22 and 24 in CI.
+- Upgrade `ora` to 9.4.1; keep `chalk` 5 and `inquirer` 9 for CLI compatibility.
+
 所有重要的项目更改都将记录在此文件中。
 
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
