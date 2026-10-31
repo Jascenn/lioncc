@@ -6,6 +6,10 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
+    ignore:
+      # inquirer-autocomplete-prompt@3 only supports inquirer 9.
+      - dependency-name: "inquirer"
+        update-types: ["version-update:semver-major"]
     groups:
       npm-minor-patch:
         patterns: ["*"]
